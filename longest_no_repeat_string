@@ -1,0 +1,17 @@
+int f(string s) {
+	int n = s.length();
+	unordered_set<char> a;
+	int ans = 0;
+	int right = -1;
+	for (int i = 0; i < n ;i++) {
+	    if (i != 0){
+	        a.erase(s[i - 1]);
+	    }
+	    while (right < n - 1 && !a.count(s[right + 1])) {
+	        a.insert(s[right + 1]);
+	        right++;
+	    }
+	    ans = max(ans, right - i + 1);
+	}
+	return ans;
+}
